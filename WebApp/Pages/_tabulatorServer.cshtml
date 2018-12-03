@@ -1,0 +1,28 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="tabulator-table">
+	<form>
+		<label class="col-form-label">Id</label>
+		<input type="text" class="form-control tabulator-table__filter-input" placeholder="Id..." data-column="id" />
+
+		<div class="form-group">
+			<label class="col-form-label">Status</label>
+			<select class="form-control tabulator-table__filter-input" data-column="status">
+				<option value="">All</option>
+				<option value="0">Status 0</option>
+				<option value="1">Status 1</option>
+			</select>
+		</div>
+
+		<label class="col-form-label">Text</label>
+		<input type="text" class="form-control tabulator-table__filter-input" placeholder="Text..." data-column="text" />
+		
+	</form>
+	<div class="tabulator-table__table">
+
+	</div>
+</div>

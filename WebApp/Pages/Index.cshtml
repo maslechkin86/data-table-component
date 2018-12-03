@@ -1,0 +1,270 @@
+﻿@page
+@model IndexModel
+@{
+	ViewData["Title"] = "Home page";
+}
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+	<li class="nav-item">
+		<a class="nav-link active" id="data-table1-tab" data-toggle="tab" href="#data-table1" role="tab" aria-controls="data-table1" aria-selected="true">DataTable server</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link active" id="data-table2-tab" data-toggle="tab" href="#data-table2" role="tab" aria-controls="data-table2" aria-selected="true">DataTable from html</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" id="tabulator1-tab" data-toggle="tab" href="#tabulator1" role="tab" aria-controls="tabulator1" aria-selected="false">Tabulator server</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" id="tabulator2-tab" data-toggle="tab" href="#tabulator2" role="tab" aria-controls="tabulator2" aria-selected="false">Tabulator from html</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" id="kendoui1-tab" data-toggle="tab" href="#kendoui1" role="tab" aria-controls="kendoui1" aria-selected="false">KendoUI server</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" id="kendoui2-tab" data-toggle="tab" href="#kendoui2" role="tab" aria-controls="kendoui2" aria-selected="false">KendoUI from html</a>
+	</li>
+</ul>
+<div class="tab-content" id="myTabContent">
+
+	<div class="tab-pane fade active in" id="data-table1" role="tabpanel" aria-labelledby="data-table1-tab">
+		<br />
+		<partial name="_dataTableServer" />
+	</div>
+
+	<div class="tab-pane fade" id="data-table2" role="tabpanel" aria-labelledby="data-table2-tab">
+		<br />
+		<div class="data-table-view2">
+			<table class="table data-table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Timestamp</th>
+						<th>Status</th>
+						<th>Text</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var contact in Model.Records) {
+						<tr>
+							<td>@contact.Id</td>
+							<td>@contact.Timestamp</td>
+							<td>@contact.Status</td>
+							<td>@contact.Text</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="tab-pane fade" id="tabulator1" role="tabpanel" aria-labelledby="tabulator1-tab">
+		<br />
+		<partial name="_tabulatorServer" />
+
+	</div>
+	<div class="tab-pane fade" id="tabulator2" role="tabpanel" aria-labelledby="tabulator2-tab">
+		<br />
+		<button class="tabulator-table__download-btn">Download</button>
+		<br />
+		<table class="table tabulator-table2">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Timestamp</th>
+					<th>Status</th>
+					<th>Text</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var contact in Model.Records) {
+					<tr>
+						<td>@contact.Id</td>
+						<td>@contact.Timestamp</td>
+						<td>@contact.Status</td>
+						<td>@contact.Text</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+
+	</div>
+	<div class="tab-pane fade" id="kendoui1" role="tabpanel" aria-labelledby="kendoui1-tab">
+		<br />
+		<div class="kendoui-table1"></div>
+	</div>
+	<div class="tab-pane fade" id="kendoui2" role="tabpanel" aria-labelledby="kendoui2-tab">
+
+		<table class="table kendoui-table2">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Timestamp</th>
+					<th>Status</th>
+					<th>Text</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var contact in Model.Records) {
+					<tr>
+						<td>@contact.Id</td>
+						<td>@contact.Timestamp</td>
+						<td>@contact.Status</td>
+						<td>@contact.Text</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+
+	</div>
+</div>
+
+
+@section Scripts
+	{
+	@*DataTable*@
+	<link href="~/lib/dataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+	<script src="~/lib/dataTables/js/jquery.dataTables.min.js"></script>
+	<script src="~/lib/dataTables/js/dataTables.bootstrap4.min.js"></script>
+	<script src="~/lib/dataTables/js/dataTables.select.min.js"></script>
+
+	@*Tabulator*@
+	<link href="~/lib/tabulator/css/tabulator.css" rel="stylesheet" />
+	<script src="~/lib/tabulator/js/tabulator.js"></script>
+	<script src="~/lib/tabulator/js/jquery_wrapper.js"></script>
+	<script type="text/javascript" src="http://oss.sheetjs.com/js-xlsx/xlsx.full.min.js"></script>
+
+	@*Kendo UI*@
+
+	<link href="~/lib/kendoui/css/kendo.common.min.css" rel="stylesheet" />
+	<link href="~/lib/kendoui/css/kendo.default.min.css" rel="stylesheet" />
+	<link href="~/lib/kendoui/css/kendo.default.mobile.min.css" rel="stylesheet" />
+	<link href="~/lib/kendoui/css/kendo.common-bootstrap.min.css" rel="stylesheet" />
+	<link href="~/lib/kendoui/css/kendo.common-bootstrap.core.min.css" rel="stylesheet" />
+
+	<script src="~/lib/kendoui/js/kendo.grid.min.js"></script>
+	<script src="~/lib/kendoui/js/kendo.all.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.4.0/jszip.min.js"></script>
+
+	<script src="~/js/Component/Table.js"></script>
+	<script src="~/js/Component/DataTable.js"></script>
+	<script src="~/js/TabulatorTableView.js"></script>
+	<script src="~/js/MyView.js"></script>
+
+	<script id="rowTemplate" type="text/x-kendo-tmpl">
+		<tr>
+			<td>
+				<a href="/devices/edit/#:id#">#:id#</a>
+			</td>
+			<td>
+				<span>#:timestamp#</span>
+			</td>
+			<td class="status">
+				#:status#
+			</td>
+			<td class="text">
+				#:text#
+			</td>
+		</tr>
+	</script>
+	<script>
+		$(document).ready(function () {
+			var page = new View.MyView();
+
+			$(".kendoui-table1").kendoGrid({
+				toolbar: ["excel"],
+				excel: {
+					allPages: true
+				},
+
+				columns: [
+					{
+						title: "Id",
+						width: 200,
+						field: "id",
+						media: "(min-width: 450px)",
+						filterable: {
+							cell: {
+								operator: "contains",
+								suggestionOperator: "contains"
+							}
+						}
+					},
+					{
+						title: "Timestamp",
+						width: 200,
+						field: "timestamp",
+						format: "{0:MM/dd/yyyy}",
+						media: "(min-width: 850px)",
+						filterable: {
+							cell: {
+								operator: "contains",
+								suggestionOperator: "contains"
+							}
+						}
+					},
+					{
+						title: "Status",
+						field: "status",
+						media: "(min-width: 850px)",
+						filterable: {
+							cell: {
+								operator: "contains",
+								suggestionOperator: "contains"
+							}
+						}
+					},
+					{
+						title: "Text",
+						field: "text",
+						media: "(min-width: 450px)",
+						filterable: {
+							cell: {
+								operator: "contains",
+								suggestionOperator: "contains"
+							}
+						}
+					}
+				],
+
+				filterable: {
+					mode: "row"
+				},
+
+				selectable: "multiple",
+
+				reorderable: true,
+				resizable: true,
+
+				groupable: false,
+				pageable: true,
+				sortable: true,
+				dataSource: {
+					type: "webapi",
+					transport: {
+						read: {
+							url: "/home/list3"
+						}
+					},
+					pageSize: 10,
+					serverPaging: true,
+					serverSorting: true,
+					serverFiltering: true,
+					serverGrouping: true,
+					serverAggregates: true,
+					schema: {
+						data: "data",
+						total: "total",
+						errors: "Errors"
+					}
+				},
+
+				rowTemplate: kendo.template($("#rowTemplate").html()),
+			});
+
+			$(".kendoui-table2").kendoGrid({
+				sortable: true,
+				filterable: true
+			});
+
+		});
+	</script>
+}
